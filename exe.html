@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+$(document).ready(function() {
+
+  $("#submit").on('click', function() {
+
+    var name = $("#name");
+    var email = $("#email");
+    var message = $("#message");
+    var phone = $("#phone");
+
+    var required = [name, email, phone];
+
+    for (var i = 0; i < required.length; i++) {
+      if (required[i].val() === "") {
+        $(message).text("Please Fill Out Required Fields").addClass(
+          'warning');
+        required[i].prev().addClass('warning');
+      } else {
+        required[i].prev().removeClass('warning');
+      }
+    }
+
+    if (!$("#form label").hasClass('warning')) {
+      $("#form")[0].remove();
+      $("#pre-form h2").text("Thanks for your feedback!")
+    }
+
+  });
+});
+	<div id="pre-form">
+  <h2>We'd love to hear your thoughts!</h2>
+</div>
+<div class="form-container">
+  <form id="form" name="form">
+
+    <h3>Contact Us Here:</h3>
+    <p id="message"></p>
+
+    <label>Name:</label>
+    <input id="name" placeholder="Name" type="text"><br>
+    <label>Email:</label>
+    <input id="email" placeholder="Email" type="email"><br>
+    <label>Number:</label>
+    <input id="phone" placeholder="10 digit phone number." type="tel"><br>
+    <label>Message:</label>
+    <textarea id="message" placeholder="Your thoughts here :)"></textarea><br>
+    <input id="submit" type="button" value="Send It!">
+
+  </form>
+</div>
